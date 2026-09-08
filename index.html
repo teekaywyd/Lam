@@ -85,6 +85,7 @@
             font-family: 'Newsreader', serif;
             font-size: 1.3rem;
             letter-spacing: 0.01em;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -742,8 +743,28 @@
         }
 
         @media (max-width:860px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--paper);
+                border-bottom: 1px solid var(--line);
+                flex-direction: column;
+                gap: 0;
+                padding: 8px 32px 20px;
+            }
 
-            .nav-links,
+            .nav-links a {
+                padding: 14px 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
             .nav-right {
                 display: none;
             }
@@ -778,6 +799,10 @@
                 padding: 72px 0 44px;
             }
         }
+
+        nav.wrap {
+            position: relative;
+        }
     </style>
 </head>
 
@@ -785,7 +810,7 @@
 
     <header>
         <nav class="wrap">
-            <div class="brand">Lambano Academy</div>
+            <div class="brand" data-page="home">Lambano Academy</div>
             <div class="nav-links">
                 <a data-page="home" class="active">Home</a>
                 <a data-page="about">About</a>
@@ -1513,9 +1538,19 @@
             navLinks.forEach(l => l.addEventListener('click', (e) => {
                 e.preventDefault();
                 showPage(l.dataset.page);
+                navLinksEl.classList.remove('open');
             }));
             const initial = (location.hash || '#home').slice(1);
             if (document.getElementById('page-' + initial)) showPage(initial);
+
+            // mobile menu toggle
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinksEl = document.querySelector('.nav-links');
+            if (menuBtn && navLinksEl) {
+                menuBtn.addEventListener('click', () => {
+                    navLinksEl.classList.toggle('open');
+                });
+            }
 
             // FAQ accordion
             document.querySelectorAll('.faq-q').forEach(q => {
