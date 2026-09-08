@@ -509,6 +509,10 @@
             gap: 32px;
         }
 
+        .mv-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
         .staff-card {
             text-align: center;
         }
@@ -743,6 +747,16 @@
         }
 
         @media (max-width:860px) {
+
+            html,
+            body {
+                overflow-x: hidden;
+            }
+
+            .wrap {
+                padding: 0 20px;
+            }
+
             .nav-links {
                 display: none;
                 position: absolute;
@@ -753,7 +767,7 @@
                 border-bottom: 1px solid var(--line);
                 flex-direction: column;
                 gap: 0;
-                padding: 8px 32px 20px;
+                padding: 8px 20px 20px;
             }
 
             .nav-links a {
@@ -773,13 +787,36 @@
                 display: block;
             }
 
+            .hero {
+                height: auto;
+                min-height: 0;
+            }
+
+            .hero-content {
+                padding: 48px 20px 44px;
+            }
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 1.9rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-index {
+                right: 20px;
+            }
+
+            .hero-caption {
+                left: 20px;
             }
 
             .two-col,
             .form-grid,
-            .footer-grid {
+            .footer-grid,
+            .mv-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -787,8 +824,33 @@
                 grid-template-columns: 1fr;
             }
 
+            .staff-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 130px;
+            }
+
+            .ec1,
+            .ec4 {
+                grid-column: 1/3;
+            }
+
             .field.full {
                 grid-column: 1;
+            }
+
+            .stats-band .wrap {
+                padding: 32px 20px;
+                justify-content: flex-start;
+                gap: 32px 40px;
             }
 
             section {
@@ -797,6 +859,20 @@
 
             .page-hero {
                 padding: 72px 0 44px;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .cta-band,
+            .cta {
+                padding: 48px 20px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -958,7 +1034,7 @@
                     <span class="kicker">Mission &amp; vision</span>
                     <h2>What we're here to do.</h2>
                 </div>
-                <div class="plain-grid" style="grid-template-columns:1fr 1fr;">
+                <div class="plain-grid mv-grid">
                     <div class="plain-card">
                         <div class="n" style="color:var(--accent);">Our Mission</div>
                         <h3>Nurture every learner, know every name.</h3>
